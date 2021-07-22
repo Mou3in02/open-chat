@@ -8,6 +8,7 @@ const Message = (props) => {
     return (
         <View style={Styles.messageView}>
             <Text style={Styles.messageContent}>{props.content}</Text>
+            <Text style={Styles.createdByText}>{props.createdBy}</Text>
         </View>
     )
 }

@@ -10,15 +10,17 @@ export default function App() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={Home} options={{
-                    title: 'Rooms',
+                <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+                <Stack.Screen name="Room" component={Room} options={({ route }) => ({
+                    title: route.params.name,
                     headerStyle: {
-                        backgroundColor: '#EDEEF7',
+                        backgroundColor: '#FE1495',
                     },
-                    headerTintColor: '#FE1495',
-                    headerTitleStyle: {},
-                }}/>
-                <Stack.Screen name="Room" component={Room} options={{title: 'room'}}/>
+                    headerTitleStyle:{
+                        color: '#fff'
+                    },
+                    headerTintColor: '#fff'
+                })}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

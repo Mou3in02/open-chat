@@ -1,13 +1,12 @@
 import {StyleSheet} from 'react-native'
 
 const Styles = StyleSheet.create({
-    viewContainer: {
+    homeView:{
         flex: 1,
-        padding: 5,
         backgroundColor: '#fff',
-        flexDirection: 'column'
+        flexDirection: 'column' //default
     },
-    addView:{
+    addView: {
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 9999,
@@ -19,7 +18,34 @@ const Styles = StyleSheet.create({
         right: '5%',
         borderRadius: 50
     },
-    roomTitle:{
+    headerView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: '#FE1495',
+        height: 60
+    },
+    homeTitle:{
+        fontSize: 20,
+        color: '#fff',
+        marginLeft: 10
+    },
+    searchInput: {
+        marginLeft: 10,
+        width: '80%',
+        paddingVertical: 6,
+        paddingHorizontal: 20,
+        backgroundColor: '#fff',
+        borderRadius: 50,
+        fontSize: 18,
+        color: '#4A47A3',
+        letterSpacing: .5,
+        textDecorationLine: 'none'
+    },
+    searchIcon:{
+        marginRight: 10
+    },
+    roomTitle: {
         fontSize: 18,
         color: '#4A47A3',
         margin: 10,
@@ -31,24 +57,24 @@ const Styles = StyleSheet.create({
         textAlign: 'center',
         flexDirection: 'row'
     },
-    newRoomTxt:{
+    newRoomTxt: {
         fontSize: 18,
         marginLeft: 5,
         color: '#fff'
     },
-    viewModal:{
+    viewModal: {
         flexDirection: 'column',
         padding: 20,
         borderRadius: 20,
         backgroundColor: '#fff',
         alignItems: 'center'
     },
-    modalTitle:{
+    modalTitle: {
         fontSize: 20,
         marginBottom: 20,
         color: '#4A47A3'
     },
-    inputRoomName:{
+    inputRoomName: {
         borderWidth: 1,
         borderColor: '#FE1495',
         borderRadius: 10,
@@ -59,14 +85,14 @@ const Styles = StyleSheet.create({
         color: '#FE1495'
 
     },
-    modalAction:{
+    modalAction: {
         marginTop: 10,
         flexDirection: "row",
         justifyContent: 'space-around',
         alignItems: 'center',
         width: '80%'
     },
-    add:{
+    add: {
         backgroundColor: '#FE1495',
         fontSize: 18,
         paddingHorizontal: 20,
@@ -74,7 +100,7 @@ const Styles = StyleSheet.create({
         borderRadius: 10,
         color: '#fff'
     },
-    cancel:{
+    cancel: {
         backgroundColor: '#fff',
         borderWidth: 1,
         borderColor: '#999',
