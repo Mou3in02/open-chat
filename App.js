@@ -14,7 +14,7 @@ export default function App() {
                 <Stack.Screen name="Room" component={Room} options={({ route }) => ({
                     title: route.params.name,
                     headerStyle: {
-                        backgroundColor: '#FE1495',
+                        backgroundColor: '#52006A',
                     },
                     headerTitleStyle:{
                         color: '#fff'

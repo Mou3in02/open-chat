@@ -27,7 +27,7 @@ const Home = (props) => {
     const [roomsFilter, setRoomsFilter] = useState(rooms)
     const [visible, setVisible] = useState(false)
     const [roomName, setRoomName] = useState(null)
-    const [showSearch, setShowSearch] = useState(true)
+    const [showSearch, setShowSearch] = useState(false)
     const [searchInput, setSearchInput] = useState('')
 
     useEffect(() => {
@@ -100,7 +100,7 @@ const Home = (props) => {
 
     return (
         <SafeAreaView style={Styles.homeView}>
-            <StatusBar backgroundColor={'#FE1495'}/>
+            <StatusBar backgroundColor={'#52006A'}/>
             {showSearch ?
                 <View style={Styles.headerView}>
                     <TextInput style={Styles.searchInput}
@@ -123,12 +123,12 @@ const Home = (props) => {
             }
             <View style={Styles.addView}>
                 <TouchableOpacity onPress={() => setVisible(true)}>
-                    <FontAwesome5 name={'plus'} size={30} color={'#fff'}/>
+                    <FontAwesome5 name={'plus'} size={35} color={'#fff'}/>
                 </TouchableOpacity>
             </View>
             <Modal isVisible={visible}>
                 <View style={Styles.viewModal}>
-                    <Text style={Styles.modalTitle}>Room name</Text>
+                    <Text style={Styles.modalTitle}>New room</Text>
                     <TextInput
                         style={Styles.inputRoomName}
                         maxLength={20}

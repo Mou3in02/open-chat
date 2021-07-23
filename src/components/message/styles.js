@@ -2,24 +2,27 @@ import {StyleSheet} from 'react-native'
 
 const Styles = StyleSheet.create({
     messageView:{
-        alignSelf: 'flex-end',
+        flexDirection: 'column',
         margin: 10,
+    },
+    contentView:{
+        flexDirection: 'row',
+        // backgroundColor: '#eee'
+    },
+    authorView:{
+        flexDirection: 'row',
     },
     messageContent:{
         fontSize: 14,
-        color: '#666',
+        color: '#4A47A3',
         borderRadius: 30,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
-        // backgroundColor: '#eee',
         padding: 15,
-        borderWidth: 1,
-        borderColor: '#999',
-        maxWidth: '80%'
     },
     createdByText:{
         fontSize: 13,
-        color: '#4A47A3',
+        color: '#52006A',
 
     }
 })

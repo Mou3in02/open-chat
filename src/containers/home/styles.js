@@ -10,7 +10,7 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 9999,
-        backgroundColor: '#FE1495',
+        backgroundColor: '#52006A',
         position: 'absolute',
         height: 60,
         width: 60,
@@ -22,7 +22,7 @@ const Styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#FE1495',
+        backgroundColor: '#52006A',
         height: 60
     },
     homeTitle:{
@@ -76,13 +76,13 @@ const Styles = StyleSheet.create({
     },
     inputRoomName: {
         borderWidth: 1,
-        borderColor: '#FE1495',
+        borderColor: '#52006A',
         borderRadius: 10,
         width: '80%',
         paddingHorizontal: 30,
         paddingVertical: 10,
         fontSize: 18,
-        color: '#FE1495'
+        color: '#52006A'
 
     },
     modalAction: {
@@ -93,7 +93,7 @@ const Styles = StyleSheet.create({
         width: '80%'
     },
     add: {
-        backgroundColor: '#FE1495',
+        backgroundColor: '#52006A',
         fontSize: 18,
         paddingHorizontal: 20,
         paddingVertical: 10,
