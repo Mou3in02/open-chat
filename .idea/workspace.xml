@@ -4,14 +4,9 @@
     <list default="true" id="48ade1bd-93b7-489e-8ab5-dd7b50411884" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/message/Message.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/message/Message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/message/messageStyles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/message/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/home/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/home/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/containers/room/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/room/Room.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/room/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/room/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +27,9 @@
     <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1lTsHYoBcAb2fwRItLaBN9QrHty" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -52,6 +49,8 @@
       <recent name="D:\chatApp\src\containers\room" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\open-chat\assets\sounds" />
+      <recent name="D:\open-chat\src\containers\room" />
       <recent name="D:\chatApp\src\containers\home" />
     </key>
   </component>
@@ -72,7 +71,8 @@
       <workItem from="1626736778910" duration="6824000" />
       <workItem from="1626743923669" duration="370000" />
       <workItem from="1626870994703" duration="9532000" />
-      <workItem from="1626962530424" duration="8844000" />
+      <workItem from="1626962530424" duration="8987000" />
+      <workItem from="1627054202993" duration="10490000" />
     </task>
     <servers />
   </component>
