@@ -4,6 +4,8 @@ import {createStackNavigator} from '@react-navigation/stack'
 import Home from "./src/containers/home/Home";
 import Room from "./src/containers/room/Room";
 import Login from "./src/containers/login/Login";
+import Register from "./src/containers/register/Register";
+
 
 const Stack = createStackNavigator();
 
@@ -12,6 +14,7 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+                <Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
                 <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
                 <Stack.Screen name="Room" component={Room} options={({ route }) => ({
                     title: route.params.name,

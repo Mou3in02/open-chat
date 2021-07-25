@@ -4,9 +4,8 @@
     <list default="true" id="48ade1bd-93b7-489e-8ab5-dd7b50411884" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/room/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/room/Room.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/login/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/login/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +71,8 @@
       <workItem from="1626743923669" duration="370000" />
       <workItem from="1626870994703" duration="9532000" />
       <workItem from="1626962530424" duration="8987000" />
-      <workItem from="1627054202993" duration="10490000" />
+      <workItem from="1627054202993" duration="10773000" />
+      <workItem from="1627165448411" duration="3888000" />
     </task>
     <servers />
   </component>
