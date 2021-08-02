@@ -59,6 +59,9 @@ const Styles = StyleSheet.create({
         height: Dimensions.get('window').height/3,
     },
     loginBtn:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#52006A',
         paddingVertical: 12,
         width: '80%',
@@ -67,7 +70,8 @@ const Styles = StyleSheet.create({
     loginBtnText:{
         color: '#fff',
         fontSize: 17,
-        textAlign: 'center'
+        textAlign: 'center',
+        marginRight: 10
     },
     forgetBtn:{
         marginTop: 10,
