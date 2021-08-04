@@ -18,11 +18,12 @@ const Login = (props) => {
     const [passwordError, setPasswordError] = useState(false)
     const [showSpinner, setShowSpinner] = useState(false)
 
+
     const setToken = async (token) => {
         try {
-            await AsyncStorage.setItem('token', token)
+            await AsyncStorage.setItem('token',token)
             props.navigation.push('Home')
-        } catch (error) {
+        }catch (error){
             throw error
         }
     }
@@ -49,11 +50,12 @@ const Login = (props) => {
                 setShowSpinner(false)
                 setToken(response.data.token)
             }).catch(() => {
-                Toast.LONG('Email address or password is invalid !')
+                Toast.show('Email address or password is not valid !',Toast.LONG)
                 setShowSpinner(false)
             })
         }
     }
+
     const goToRegister = () => {
         props.navigation.push('Register')
     }

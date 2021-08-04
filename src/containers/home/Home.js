@@ -20,20 +20,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = (props) => {
 
-    const [rooms, setRooms] = useState([
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-        // {_id: Math.floor(Math.random() * 10000), name: 'hard work', createdBy: '5f73d8b91d3db61a4cd7df12'},
-    ])
+    const [rooms, setRooms] = useState([])
     const [roomsFilter, setRoomsFilter] = useState(rooms)
     const [visible, setVisible] = useState(false)
     const [roomName, setRoomName] = useState(null)
@@ -42,39 +29,35 @@ const Home = (props) => {
     const [isLoaded, setIsLoaded] = useState(false)
 
 
-    const getToken = async () => {
-        try {
-            const token = await AsyncStorage.getItem('token')
-            if (!token) return null
-            return token
-        } catch (e) {
-            Toast.LONG('AsyncStorage error !')
-            return null
-        }
-    }
-
     useEffect(() => {
-        AxiosInstance.get('/', {
-            headers: {
-                Authorization: 'Bearer '+'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjczZDhiOTFkM2RiNjFhNGNkN2RmMTIiLCJlbWFpbCI6Im1vdTNpbjAyQGdtYWlsLmNvbSIsImlhdCI6MTYyNzkyMDE2NywiZXhwIjoxNjI4MDA2NTY3' +
-                    'fQ.e7ntpBzgfczuxADk1WI5fHT0k69ZX-h_lO1Gvt1ZcUnzG1f52nrD6KyAxRMWSdlv7ltVzR67GknXE69KjW3R8wzT1CYKiYDRKkSqOKbBvP1vKG4zI_tEpzdTx2QeEAD24gWYG84d9n43H12YvZG3xs8XSRp6aECsIl' +
-                    'nOZtgzJ6N30Q5mVMH9-jnIFKNPAiBG0Ol0Mo73ab81L50B6-k0bh7cHLp41ieAI7djSEZUkHuAT4ON1PwLhSVaXXguYp1Bcu9LPjtnVMKngR5L5UJ5IjYlv1M25DaUU-U6ij2MstL0VGlSaM6KjVIZ7vnio3VQrx2Tjry' +
-                    'J3iwNS5_SRfVmknuse_VYfb3_nwrYBZy0M1v0_-BF1iofAlAU0LnNtr6MrAd02Gmw0bJQC2gxawKDmPGs2bHM1UqKODkU2JNx0d1mgp-1zeu0CgJtO1mTUubO9JYvhuW_ECZNGuxauslwkwAUYXZhor7A1aPaBFdcij9A' +
-                    'JDKp6ezjLYhfjJ0viaRM_ZVg5SVIshsLP_exNE47psXS7939IxflIcSDKEX7zm3oDVj0lOK0US2dp3aRv7nMO-SdK7uZ4ErehkI6NiOBN6RN-Qa44l3IG-uW14n-Jhx3bkpXeB9qBe8JV_7Nismrmxg9PKkjXhOsEuwXY' +
-                    'GlykbCoZLI_mOfGkSMJK_wGXSg'
+        async function checkToken() {
+            try {
+                const token = await AsyncStorage.getItem('token')
+                if(token !== null) {
+                    AxiosInstance.get('/', {
+                        headers: {
+                            Authorization: 'Bearer '+token
+                        }
+                    }).then((response) => {
+                        let rooms = response.data.reverse()
+                        console.log(rooms)
+                        setRooms(rooms)
+                        setRoomsFilter(rooms)
+                        setIsLoaded(true)
+                    }).catch((error) => {
+                        if (error.response.status === 500) {
+                            Toast.LONG('Server error !')
+                            throw new Error(error)
+                        } else {
+                            props.navigation.push('Login')
+                        }
+                    })
+                }
+            } catch(error) {
+                throw error
             }
-        }).then((response) => {
-            let rooms = response.data.reverse()
-            setRooms(rooms)
-            setIsLoaded(true)
-        }).catch((error) => {
-            if (error.response.status === 500) {
-                Toast.LONG('Server error !')
-                throw new Error(error)
-            } else {
-                props.navigation.push('Login')
-            }
-        })
+        }
+        checkToken()
     }, [])
 
     useEffect(() => {
@@ -88,7 +71,6 @@ const Home = (props) => {
             })
             setRoomsFilter(newRoomsFilter)
         }
-
     }, [searchInput])
 
     const onClickCloseSearch = () => {
@@ -158,10 +140,15 @@ const Home = (props) => {
                     </View>
                     :
                     <View style={Styles.headerView}>
-                        <Text style={Styles.homeTitle}>Home page</Text>
-                        <TouchableOpacity onPress={() => setShowSearch(true)}>
-                            <FontAwesome5 style={Styles.searchIcon} name={'search'} color={'#fff'} size={30}/>
-                        </TouchableOpacity>
+                        <Text style={Styles.homeTitle}>Open Chat</Text>
+                        <View style={Styles.options}>
+                            <TouchableOpacity onPress={() => setShowSearch(true)}>
+                                <FontAwesome5 style={Styles.searchIcon} name={'search'} color={'#fff'} size={30}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => {}}>
+                                <FontAwesome5 style={Styles.searchIcon} name={'ellipsis-v'} color={'#fff'} size={22}/>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 }
                 <View style={Styles.addView}>

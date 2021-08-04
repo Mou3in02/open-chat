@@ -30,6 +30,12 @@ const Styles = StyleSheet.create({
         color: '#fff',
         marginLeft: 10
     },
+    options:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '20%'
+    },
     searchInput: {
         marginLeft: 10,
         width: '80%',
