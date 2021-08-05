@@ -7,7 +7,10 @@ import {
     SafeAreaView,
     TextInput,
     StatusBar,
-    ActivityIndicator
+    ActivityIndicator,
+    Pressable,
+    TouchableWithoutFeedback,
+    ScrollView
 } from 'react-native'
 import Modal from 'react-native-modal';
 import Styles from "./styles"
@@ -16,6 +19,7 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import isEmpty from 'validator/es/lib/isEmpty'
 import Toast from 'react-native-simple-toast';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import JWT from "../../../utils/JWT";
 
 
 const Home = (props) => {
@@ -27,20 +31,23 @@ const Home = (props) => {
     const [showSearch, setShowSearch] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     const [isLoaded, setIsLoaded] = useState(false)
+    const [showUserDetails, setUserDetails] = useState(true)
+    const [idUser, setIdUser] = useState(null)
 
 
     useEffect(() => {
         async function checkToken() {
             try {
                 const token = await AsyncStorage.getItem('token')
-                if(token !== null) {
+                if (token !== null) {
+                    let {_id} = JWT.getPayload(token)
+                    setIdUser(_id)
                     AxiosInstance.get('/', {
                         headers: {
-                            Authorization: 'Bearer '+token
+                            Authorization: 'Bearer ' + token
                         }
                     }).then((response) => {
                         let rooms = response.data.reverse()
-                        console.log(rooms)
                         setRooms(rooms)
                         setRoomsFilter(rooms)
                         setIsLoaded(true)
@@ -53,7 +60,7 @@ const Home = (props) => {
                         }
                     })
                 }
-            } catch(error) {
+            } catch (error) {
                 throw error
             }
         }
@@ -145,7 +152,9 @@ const Home = (props) => {
                             <TouchableOpacity onPress={() => setShowSearch(true)}>
                                 <FontAwesome5 style={Styles.searchIcon} name={'search'} color={'#fff'} size={30}/>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={() => {}}>
+                            <TouchableOpacity onPress={() => {
+                                setUserDetails(true)
+                            }}>
                                 <FontAwesome5 style={Styles.searchIcon} name={'ellipsis-v'} color={'#fff'} size={22}/>
                             </TouchableOpacity>
                         </View>
@@ -156,6 +165,31 @@ const Home = (props) => {
                         <FontAwesome5 name={'plus'} size={35} color={'#fff'}/>
                     </TouchableOpacity>
                 </View>
+                <Modal isVisible={showUserDetails}
+                       style={{margin: 0, padding: 0}}
+                       transparent={true}
+                       onRequestClose={() => {
+                           setUserDetails(false)
+                       }}
+                       animationType={'fade'}>
+                    <View style={Styles.userDetailsView}>
+                        <TouchableOpacity style={Styles.closeView} onPress={() => setUserDetails(false)}>
+                            <FontAwesome5 name={'times-circle'} size={25} color={'#999'}/>
+                        </TouchableOpacity>
+                        <View style={Styles.userId}>
+                            <FontAwesome5 name={'user-circle'} size={19} color={'#4A47A3'}/>
+                            <Text style={Styles.id}>{idUser}</Text>
+                        </View>
+                        <View style={Styles.userDetails}>
+                            <FontAwesome5 name={'envelope'} size={18} color={'#4A47A3'}/>
+                            <Text style={Styles.email}>mou3in02@gmail.com</Text>
+                        </View>
+                        <View style={Styles.userLogout}>
+                            <FontAwesome5 name={'sign-out-alt'} size={18} color={'#BD1616'}/>
+                            <Text style={Styles.logout}>Logout</Text>
+                        </View>
+                    </View>
+                </Modal>
                 <Modal isVisible={visible}>
                     <View style={Styles.viewModal}>
                         <Text style={Styles.modalTitle}>New room</Text>

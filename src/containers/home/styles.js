@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, StatusBar} from 'react-native'
 
 const Styles = StyleSheet.create({
-    homeView:{
+    homeView: {
         flex: 1,
         backgroundColor: '#fff',
         flexDirection: 'column' //default
@@ -25,12 +25,12 @@ const Styles = StyleSheet.create({
         backgroundColor: '#52006A',
         height: 60
     },
-    homeTitle:{
+    homeTitle: {
         fontSize: 20,
         color: '#fff',
         marginLeft: 10
     },
-    options:{
+    options: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -48,8 +48,55 @@ const Styles = StyleSheet.create({
         letterSpacing: .5,
         textDecorationLine: 'none'
     },
-    searchIcon:{
+    searchIcon: {
         marginRight: 10
+    },
+    userDetailsView: {
+        position: 'absolute',
+        top: 60,
+        right: 5,
+        flexDirection: 'column',
+        // alignItems: 'flex-end',
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        width: '65%',
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+    },
+    closeView: {
+        alignItems: 'flex-end',
+        marginBottom: 15,
+    },
+    userId: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    id: {
+        fontSize: 12,
+        color: '#4A47A3',
+        marginLeft: 10
+    },
+    userDetails: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    email: {
+        fontSize: 14,
+        marginLeft: 10,
+        color: '#4A47A3'
+    },
+    userLogout: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    logout: {
+        color: '#BD1616',
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginLeft: 10
     },
     roomTitle: {
         fontSize: 18,
