@@ -8,9 +8,6 @@ import {
     TextInput,
     StatusBar,
     ActivityIndicator,
-    Pressable,
-    TouchableWithoutFeedback,
-    ScrollView
 } from 'react-native'
 import Modal from 'react-native-modal';
 import Styles from "./styles"
@@ -31,39 +28,11 @@ const Home = (props) => {
     const [showSearch, setShowSearch] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     const [isLoaded, setIsLoaded] = useState(false)
-    const [showUserDetails, setUserDetails] = useState(true)
+    const [showUserDetails, setUserDetails] = useState(false)
     const [idUser, setIdUser] = useState(null)
-
+    const [emailUser, setEmailUser] = useState(null)
 
     useEffect(() => {
-        async function checkToken() {
-            try {
-                const token = await AsyncStorage.getItem('token')
-                if (token !== null) {
-                    let {_id} = JWT.getPayload(token)
-                    setIdUser(_id)
-                    AxiosInstance.get('/', {
-                        headers: {
-                            Authorization: 'Bearer ' + token
-                        }
-                    }).then((response) => {
-                        let rooms = response.data.reverse()
-                        setRooms(rooms)
-                        setRoomsFilter(rooms)
-                        setIsLoaded(true)
-                    }).catch((error) => {
-                        if (error.response.status === 500) {
-                            Toast.LONG('Server error !')
-                            throw new Error(error)
-                        } else {
-                            props.navigation.push('Login')
-                        }
-                    })
-                }
-            } catch (error) {
-                throw error
-            }
-        }
         checkToken()
     }, [])
 
@@ -79,6 +48,39 @@ const Home = (props) => {
             setRoomsFilter(newRoomsFilter)
         }
     }, [searchInput])
+
+    const checkToken = async () => {
+        try {
+            const token = await AsyncStorage.getItem('token')
+            if (token !== null) {
+                let {_id, email} = JWT.getPayload(token)
+                setIdUser(_id)
+                setEmailUser(email)
+                AxiosInstance.get('/', {
+                    headers: {
+                        Authorization: 'Bearer ' + token
+                    }
+                }).then((response) => {
+                    let rooms = response.data.reverse()
+                    setRooms(rooms)
+                    setRoomsFilter(rooms)
+                    setIsLoaded(true)
+                }).catch((error) => {
+                    if (error.response.status === 500) {
+                        Toast.show('Server error !',Toast.LONG)
+                    } else {
+                        props.navigation.push('Login')
+                    }
+                })
+            }
+            else {
+                props.navigation.push('Login')
+            }
+        } catch (error) {
+            Toast.show('AsyncStorage error !',Toast.LONG)
+            throw new Error(error)
+        }
+    }
 
     const onClickCloseSearch = () => {
         setShowSearch(false)
@@ -120,6 +122,15 @@ const Home = (props) => {
             name: room.name.toString(),
             roomId: room._id.toString()
         })
+    }
+    const logout = async () => {
+        setUserDetails(false)
+        try {
+            await AsyncStorage.setItem('token','')
+            props.navigation.push('Login')
+        }catch (error){
+            throw error
+        }
     }
 
     return (
@@ -182,11 +193,13 @@ const Home = (props) => {
                         </View>
                         <View style={Styles.userDetails}>
                             <FontAwesome5 name={'envelope'} size={18} color={'#4A47A3'}/>
-                            <Text style={Styles.email}>mou3in02@gmail.com</Text>
+                            <Text style={Styles.email}>{emailUser}</Text>
                         </View>
                         <View style={Styles.userLogout}>
-                            <FontAwesome5 name={'sign-out-alt'} size={18} color={'#BD1616'}/>
-                            <Text style={Styles.logout}>Logout</Text>
+                            <TouchableOpacity style={Styles.logoutBtn} onPress={logout}>
+                                <Text style={Styles.logout}>Log Out</Text>
+                                <FontAwesome5 name={'sign-out-alt'} size={16} color={'#BD1616'}/>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 </Modal>

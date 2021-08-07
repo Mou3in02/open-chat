@@ -88,15 +88,24 @@ const Styles = StyleSheet.create({
         color: '#4A47A3'
     },
     userLogout: {
+        marginVertical: 10,
+    },
+    logoutBtn:{
+        borderWidth: 1,
+        borderColor: '#BD1616',
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 10
+        justifyContent: 'space-around',
+        alignSelf: 'flex-start',
+        paddingVertical: 8,
+        paddingHorizontal: 10,
+        borderRadius: 20,
     },
     logout: {
         color: '#BD1616',
         fontSize: 14,
         fontWeight: 'bold',
-        marginLeft: 10
+        marginRight: 8,
     },
     roomTitle: {
         fontSize: 18,

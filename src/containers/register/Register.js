@@ -7,6 +7,7 @@ import isEmpty from "validator/es/lib/isEmpty";
 import isEmail from "validator/es/lib/isEmail";
 import Toast from "react-native-simple-toast";
 import AxiosInstance from "../../../network/AxiosInstance";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Login = (props) => {
@@ -16,7 +17,7 @@ const Login = (props) => {
     const [emailError, setEmailError] = useState(false)
     const [passwordError, setPasswordError] = useState(false)
 
-    const onClickLogin = () => {
+    const onClickLogin = async () => {
         setEmailError(false)
         setPasswordError(false)
         if (isEmpty(emailInput) || isEmpty(emailInput.trim()) || !isEmail(emailInput)){
@@ -30,18 +31,35 @@ const Login = (props) => {
             setPasswordError(true)
         }
         else {
-            AxiosInstance.post('/register',{
+            AxiosInstance.post('/users/add',{
                 email: emailInput,
                 password: passwordInput
-            }).then(() => {
-
+            }).then((response) => {
+                successRegister(response)
             }).catch((error) => {
-                throw new Error(error)
+                if (error.response.status === 400){
+                    setEmailError(true)
+                    Toast.show('Email is already exists !',Toast.LONG)
+                }
+                else if(error.response.status === 500){
+                    Toast.show('Server error !',Toast.LONG)
+                    throw new Error(error)
+                }
             })
         }
     }
     const goToLogin = () => {
         props.navigation.push('Login')
+    }
+    const successRegister = async (response) => {
+        try {
+            const {token} = response.data
+            await AsyncStorage.setItem('token',token)
+            props.navigation.push('Home')
+        }catch (error) {
+            Toast.show('AsyncStorage error !',Toast.LONG)
+            throw new Error(error)
+        }
     }
 
     return (
